@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="build/app.js"></script>
+		<script type="text/javascript">
+			/*
+			AMD:
+				适用于浏览器端（异步）【Require.js框架】
+				预加载（在并行加载js文件同时，还会解析执行该模块）
+			CMD:
+				适用于服务器端（同步）【CommonJS标准】
+				懒加载（一开始不会执行，在需要的时候才执行）
+			模块化：将一个大程序拆分成互相依赖的小文件，再用简单的方法拼装起来。
+				ES6模块化：
+					export导出：
+						1.as取别名
+						2.输出变量名时候＋{}（export {变量名}）
+							//1
+							export function f() {};
+							//2
+							function f() {}
+							export {f};
+					import导入:
+						from后边不支持变量，只支持字符串
+							1.import {firstName, lastName, year} from './profile';
+							2.import { lastName as surname } from './profile';(把lastName换为surname)
+							
+							3.导入的时候不加{}，并且名字随便取（customName），但是必须使用export-default.js，它的默认输出是一个函数
+								export default function(){
+									consolo.log('foo');
+								}
+								import customName from './export-default';
+								
+					**注意**：ES6模块化语法浏览器不支持，通过babel转一下：将ES6语法转为ES5语法
+							 使用webpack去将ES6转为ES5，开发的时候既可以使用ES6新语法，又能在浏览器下正常运行
+							 webpack基于node环境。
+							 node.js基于JS的开发后端的语言。
+							 
+							 
+			webpack：自动化构建工具
+				1.入口
+					entry:'./2.js'
+				2.出口
+					output: {
+				        path: path.resolve(__dirname, 'build'), // 指定打包之后的文件夹
+				        filename: 'index.js' // 可以打包为多个文件
+				    }
+				3.模块
+					module:{
+						// 使用loader模块
+						rules: [
+							{
+					        		test: /\.js$/,
+					        		use: [
+						            {
+						                loader: 'babel-loader',
+						                options: {
+						                		presets: ['env']
+						                }
+						            }
+					            ]
+							}
+						]
+					}
+			构建：
+				1、通过npm init初始化项目
+				2、在项目文件夹中安装webpack：npm install webpack --save-dev
+				3、在项目中配置你的webpack：新建一个webpack.config.js文件
+				4、安装babel-loader：npm install --save-dev babel-loader babel-core babel-preset-env webpack
+				5、安装css-loder:npm install css-loder --save-dev
+				6、安装style-loder:npm install style-loder --save-dev
+				
+			 
+			 * */
+		</script>
+	</body>
+</html>
